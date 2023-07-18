@@ -1,12 +1,10 @@
-import React from "react";
 import { clsx } from "clsx";
 
-
-export type ComponentNumberType =  "primary" | "Secondary";
+export type ComponentNumberType = "primary" | "Secondary";
 
 export type ComponentNumberCountPopsType = {
   number: string;
-  type: ComponentNumberType
+  type: ComponentNumberType;
 };
 
 const ComponentNumberCount = ({
@@ -15,7 +13,12 @@ const ComponentNumberCount = ({
 }: ComponentNumberCountPopsType): JSX.Element => {
   return (
     <div className="flex-col">
-      <span className={clsx("text-lg font-normal",type === 'primary' ?"text-black" :'text-[#8F6BE8]')}>
+      <span
+        className={clsx(
+          "text-lg font-normal",
+          type === "primary" ? "text-black" : "text-[#8F6BE8]"
+        )}
+      >
         {number}
       </span>
       <div

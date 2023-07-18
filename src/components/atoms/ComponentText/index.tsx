@@ -1,13 +1,16 @@
-import React from "react";
 import { clsx } from "clsx";
 
 export type ComponentTextType = {
   text: string;
   type: "head" | "title" | "content";
-  bg?: "dark" | "light";
+  backgroundType?: "dark" | "light" | "default";
 };
 
-const ComponentText = ({ text, type, bg }: ComponentTextType): JSX.Element => {
+const ComponentText = ({
+  text,
+  type,
+  backgroundType,
+}: ComponentTextType): JSX.Element => {
   switch (type) {
     case "head":
       return (
@@ -26,7 +29,7 @@ const ComponentText = ({ text, type, bg }: ComponentTextType): JSX.Element => {
         <span
           className={clsx(
             "text-[15px] md:text-lg lg:text-xl font-normal",
-            bg === "dark" ? "text-white" : "text-black"
+            backgroundType === "dark" ? "text-white" : "text-black"
           )}
         >
           {text}

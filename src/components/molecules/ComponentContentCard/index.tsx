@@ -1,10 +1,8 @@
-import React from "react";
 import { clsx } from "clsx";
 import ComponentText from "../../atoms/ComponentText";
 import ComponentNumberCount, {
   ComponentNumberType,
 } from "../../atoms/ComponentNumberCount";
-import cart_img from "../../../img/footballer 1.png";
 
 export type ComponentContentCardPropsType = {
   header?: string;
@@ -14,56 +12,67 @@ export type ComponentContentCardPropsType = {
     countNumberType: ComponentNumberType;
   };
   content?: string;
-  bg?: "gray" | "purple";
-  positionContext?: 'left' | 'right'
+  background?: {
+    color: "gray" | "purple" | "darkBlue" | "default";
+    type: "dark" | "light" | "default";
+  };
+  positionContext?: "left" | "right";
 };
 
 const ComponentContentCard = ({
   header,
   title,
   content,
-  bg,
+  background,
   positionContext,
-
 }: ComponentContentCardPropsType): JSX.Element => {
   return (
-    // <div className="flex">
-    // <img src={cart_img} className={clsx("top-9 left-[175px]")} />
     <div
       className={clsx(
-        "flex-col w-full grid grid-cols-3",
-        positionContext === 'right' ? 'pr-[95px]' : 'pl-[175px]',
-        bg === "gray" && "bg-[#F5F4F9]",
-        bg === "purple" && "bg-[#5E3DB3]",
-        header && 'pt-6 pb-14',
-        content && 'pt-[53px] pb-14',
-     
+        background?.color === "gray" &&
+          "bg-[#F5F4F9] shadow-[0px_0px_0px_100vmax_#F5F4F9]",
+        background?.color === "purple" &&
+          "bg-[#5E3DB3] shadow-[0px_0px_0px_100vmax_#5E3DB3]",
+        background?.color === "darkBlue" &&
+          "bg-[#090C35] shadow-[0px_0px_0px_100vmax_#090C35]",
+        header && "pt-6 pb-14",
+        content && "pt-[53px] pb-14",
+        "[clip-path:inset(0px_-100vmax)]"
       )}
     >
-    {positionContext === 'right' &&   <div className="col-span-2"></div>}
-    
-      <div className="col-span-1">
-        {header && <ComponentText text={header} type="head" />}
-        {title && (
-          <div
-            className={clsx(
-              "flex gap-[10px]",
-              header ? "mt-[59px]" : "mt-0",
-              "mb-[21px]"
-            )}
-          >
-            <ComponentNumberCount
-              number={title.countNumber}
-              type={title.countNumberType}
-            />
-            <ComponentText text={title.text} type="title" />
-          </div>
-        )}
-        {content && <ComponentText text={content} type="content" bg={bg === 'purple' ? 'dark': 'light'}/>}
-      </div>
-      {positionContext === 'left' &&   <div className="col-span-2"></div>}
+      {/* {header && <ComponentText text={header} type="head" />} */}
+      {title && (
+        <div
+          className={clsx(
+            // header ? 'hidden' :'flex',
+            // "flex gap-[10px]",
+            header
+              ? "mt-[59px] hidden sm:flex gap-[10px]"
+              : "mt-0 flex gap-[10px]",
+            "mb-[21px]"
+          )}
+        >
+          <ComponentNumberCount
+            number={title.countNumber}
+            type={title.countNumberType}
+          />
+          <ComponentText text={title.text} type="title" />
+        </div>
+      )}
+      {content && (
+        <div
+          className={clsx(
+            header ? "hidden sm:flex gap-[10px]" : "flex gap-[10px]"
+          )}
+        >
+          <ComponentText
+            text={content}
+            type="content"
+            backgroundType={background?.type}
+          />
+        </div>
+      )}
     </div>
-    // </div>
   );
 };
 

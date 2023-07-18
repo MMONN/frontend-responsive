@@ -1,30 +1,24 @@
 import { clsx } from "clsx";
-import path from "path";
 
-export type ComponentImagePropsType = {
+export type ComponentImagePlayersPropsType = {
   sourceImage?: {
     desktopSiz?: string;
     tableSize?: string;
     mobileSize?: string;
   };
-  positionImage: "left" | "right";
 };
 
-const ComponentImage = ({
+const ComponentImagePlayers = ({
   sourceImage,
-  positionImage,
-}: ComponentImagePropsType): JSX.Element => {
+}: ComponentImagePlayersPropsType): JSX.Element => {
   return (
     <>
       <picture
         className={clsx(
-          "w-full z-10",
-          positionImage === "left" && "mt-0 ml-0",
-          "md:h-[950px] md:ml-[175px] md:mt-[35px]",
-
-          positionImage === "right" && "mt-0 mr-0",
-          "sm:h-[568px]",
-          "md:h-[815px] md:mr-[125px] md:w-[991px]"
+          "w-full z-10 mt-0 ml-0 ",
+          "h-[249px] w-[302px]",
+          "sm:h-[568px] sm:w-[691px]",
+          "md:h-[815px] md:w-[1116px] md:mr-[125px]"
         )}
       >
         {sourceImage?.mobileSize && (
@@ -49,10 +43,14 @@ const ComponentImage = ({
           />
         )}
 
-        <img src="https://twitter.com/KARTOON__kt" className="w-full h-full" />
+        <img
+          src="/img/athletes_tablet.png"
+          className="w-full h-full"
+          alt="img-athletes"
+        />
       </picture>
     </>
   );
 };
 
-export default ComponentImage;
+export default ComponentImagePlayers;
