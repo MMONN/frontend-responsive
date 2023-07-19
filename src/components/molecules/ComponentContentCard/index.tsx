@@ -40,12 +40,9 @@ const ComponentContentCard = ({
         "[clip-path:inset(0px_-100vmax)]"
       )}
     >
-      {/* {header && <ComponentText text={header} type="head" />} */}
       {title && (
         <div
           className={clsx(
-            // header ? 'hidden' :'flex',
-            // "flex gap-[10px]",
             header
               ? "mt-[59px] hidden sm:flex gap-[10px]"
               : "mt-0 flex gap-[10px]",

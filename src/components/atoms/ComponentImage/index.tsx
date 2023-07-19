@@ -1,5 +1,4 @@
 import { clsx } from "clsx";
-import path from "path";
 
 export type ComponentImagePropsType = {
   sourceImage?: {
